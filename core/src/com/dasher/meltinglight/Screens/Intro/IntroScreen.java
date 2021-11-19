@@ -1,12 +1,14 @@
 package com.dasher.meltinglight.Screens.Intro;
 
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.utils.Timer;
 import com.dasher.meltinglight.MeltingLight;
 import com.dasher.meltinglight.Screens.GameScreen;
+import com.dasher.meltinglight.Screens.Menu.MainMenu;
+import com.dasher.meltinglight.Tasks.ClockTask;
 
 public class IntroScreen extends GameScreen {
-    private Sprite sprite;
+    private ClockTask menuScreenTask;
+    private IntroStage introStage;
 
     public IntroScreen(MeltingLight game) {
         super(game);
@@ -14,14 +16,20 @@ public class IntroScreen extends GameScreen {
 
     @Override
     public void show() {
-        sprite = new Sprite(game.assets.get(game.assets.textures.intro.sprite));
+        introStage = new IntroStage(game);
+        menuScreenTask = new ClockTask(1) {
+            @Override
+            public void run() {
+                game.setScreen(new MainMenu(game), 1);
+            }
+        };
     }
 
     @Override
     public void render(float delta) {
-        game.batch.begin();
-        sprite.draw(game.batch);
-        game.batch.end();
+        menuScreenTask.update(delta);
+        introStage.act(delta);
+        introStage.draw();
     }
 
     @Override

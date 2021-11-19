@@ -3,7 +3,6 @@ package com.dasher.meltinglight.Assets.TextureAssets;
 import com.badlogic.gdx.assets.loaders.TextureLoader;
 import com.badlogic.gdx.graphics.Texture;
 import com.dasher.meltinglight.Assets.AssetPack;
-import com.dasher.meltinglight.Assets.ChildPack;
 import com.dasher.meltinglight.MeltingLight;
 
 public class TexturePack extends AssetPack<Texture> {

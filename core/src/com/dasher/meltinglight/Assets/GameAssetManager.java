@@ -12,11 +12,14 @@ import com.dasher.meltinglight.MeltingLight;
 public class GameAssetManager extends AssetManager {
     private final Array<AssetPack<?>> assetPacks = new Array<>();
     private final MeltingLight game;
-    public final TexturePack textures;
+    public TexturePack textures;
 
     public GameAssetManager(MeltingLight game) {
-        createPack(textures = new TexturePack(game));
         this.game = game;
+    }
+
+    public void initPacks() {
+        createPack(textures = new TexturePack(game));
     }
 
     private void createPack(AssetPack<?> assetPack) {

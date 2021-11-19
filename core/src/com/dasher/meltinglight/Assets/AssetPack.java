@@ -1,6 +1,5 @@
 package com.dasher.meltinglight.Assets;
 
-import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.assets.AssetLoaderParameters;
 import com.badlogic.gdx.utils.Array;
 import com.dasher.meltinglight.IO.FileExtension;
@@ -18,25 +17,25 @@ public abstract class AssetPack<T> {
 
     public abstract String dir();
 
-    public Array<AssetDescriptor<T>> assetDescriptors = new Array<>();
+    public Array<GameAssetDescriptor<T>> assetDescriptors = new Array<>();
     public Array<ChildPack<T, AssetPack<T>>> childPacks = new Array<>();
 
     public abstract Class<T> assetType();
 
-    public AssetDescriptor<T> createDescriptor(String fileName, FileExtension extension, AssetLoaderParameters<T> parameters) {
+    public GameAssetDescriptor<T> createDescriptor(String fileName, FileExtension extension, AssetLoaderParameters<T> parameters) {
         String realFileName = dir() + "/" + fileName + extension.toString();
-        AssetDescriptor<T> assetDescriptor = parameters == null ?
-                new AssetDescriptor<T>(realFileName, assetType())
-                : new AssetDescriptor<T>(realFileName, assetType(), parameters);
+        GameAssetDescriptor<T> assetDescriptor = parameters == null ?
+                new GameAssetDescriptor<T>(game.assets, realFileName, assetType())
+                : new GameAssetDescriptor<T>(game.assets, realFileName, assetType(), parameters);
         assetDescriptors.add(assetDescriptor);
         return assetDescriptor;
     }
 
-    public AssetDescriptor<T> createDescriptor(String fileName, FileExtension extension) {
+    public GameAssetDescriptor<T> createDescriptor(String fileName, FileExtension extension) {
         return createDescriptor(fileName, extension, null);
     }
 
-    public AssetDescriptor<T> createDescriptor(String fileName) {
+    public GameAssetDescriptor<T> createDescriptor(String fileName) {
         return createDescriptor(fileName, game.fileExtensions.none);
     }
 
