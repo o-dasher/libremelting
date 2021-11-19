@@ -5,6 +5,7 @@ import com.badlogic.gdx.assets.AssetLoaderParameters;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.Array;
+import com.dasher.meltinglight.Assets.SoundAssets.SoundPack;
 import com.dasher.meltinglight.Assets.TextureAssets.TexturePack;
 import com.dasher.meltinglight.IO.SysPrinter;
 import com.dasher.meltinglight.MeltingLight;
@@ -13,6 +14,7 @@ public class GameAssetManager extends AssetManager {
     private final Array<AssetPack<?>> assetPacks = new Array<>();
     private final MeltingLight game;
     public TexturePack textures;
+    public SoundPack sounds;
 
     public GameAssetManager(MeltingLight game) {
         this.game = game;
@@ -20,6 +22,7 @@ public class GameAssetManager extends AssetManager {
 
     public void initPacks() {
         createPack(textures = new TexturePack(game));
+        createPack(sounds = new SoundPack(game));
     }
 
     private void createPack(AssetPack<?> assetPack) {
