@@ -52,7 +52,7 @@ public class MeltingLight extends Game {
 		shapeRenderer = new ShapeRenderer();
 		actorUtils = new ActorUtils(viewport);
 		batch = new SpriteBatch();
-		fadeBlock = new FadeBlock(Color.BLACK, shapeRenderer, viewport);
+		fadeBlock = new FadeBlock(Color.BLACK, shapeRenderer);
 		assets = new GameAssetManager(this);
 		assets.initPacks();
 		assets.load();
@@ -80,6 +80,7 @@ public class MeltingLight extends Game {
 	@Override
 	public void resize(int width, int height) {
 		super.resize(width, height);
+		fadeBlock.resize(width, height);
 		viewport.update(width, height);
 	}
 

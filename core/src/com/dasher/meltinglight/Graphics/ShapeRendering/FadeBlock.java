@@ -7,39 +7,31 @@ import com.badlogic.gdx.graphics.GL30;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.Null;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.dasher.meltinglight.Graphics.Interfaces.ResizeListener;
 
 
-public class FadeBlock {
+public class FadeBlock implements ResizeListener {
     private final Color color;
     private boolean isFadingIn = false;
     private boolean isFadingOut = false;
     private float period = 1;
     private final ShapeRenderer shapeRenderer;
-    private final Viewport viewport;
     private Runnable fadeInTask;
     private Runnable fadeOutTask;
+    private float w;
+    private float h;
 
     public FadeBlock(Color color, ShapeRenderer shapeRenderer) {
-        this(color, shapeRenderer, null);
-    }
-
-    public FadeBlock(Color color, ShapeRenderer shapeRenderer, @Null Viewport viewport) {
         this.color = color.cpy();
         this.color.a = 0;
         this.shapeRenderer = shapeRenderer;
-        this.viewport = viewport;
+        w = Gdx.graphics.getWidth();
+        h = Gdx.graphics.getHeight();
     }
 
     public void update(float delta) {
-        float w;
-        float h;
-        if (viewport == null) {
-            w = Gdx.graphics.getWidth();
-            h = Gdx.graphics.getHeight();
-        } else {
-            w = viewport.getWorldWidth();
-            h = viewport.getWorldHeight();
-        }
+        float w = Gdx.graphics.getWidth();;
+        float h = Gdx.graphics.getHeight();
         if (isFading()) {
             if (isFadingIn) {
                 color.a = Math.min(1, color.a + delta / period);
@@ -89,5 +81,11 @@ public class FadeBlock {
 
     public void setFadeOutTask(Runnable fadeOutTask) {
         this.fadeOutTask = fadeOutTask;
+    }
+
+    @Override
+    public void resize(float width, float height) {
+        w = width;
+        h = height;
     }
 }
