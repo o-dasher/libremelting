@@ -13,7 +13,7 @@ buildscript {
         classpath 'org.gretty:gretty:3.0.2'
         classpath 'com.android.tools.build:gradle:7.0.3'
         classpath 'com.mobidevelop.robovm:robovm-gradle-plugin:2.3.12'
-        
+
 
     }
 }
@@ -32,6 +32,7 @@ allprojects {
         aiVersion = '1.8.2'
         gdxControllersVersion = '2.1.0'
         lombok = '1.18.20'
+        gdxvfx = '0.5.0'
     }
 
     repositories {
@@ -140,7 +141,7 @@ project(":html") {
         lom "org.projectlombok:lombok:$lombok"
         implementation configurations.lom.dependencies
         annotationProcessor "org.projectlombok:lombok:$lombok"
-        
+        implementation "com.crashinvaders.vfx:gdx-vfx-gwt:$gdxvfx"
     }
 }
 
@@ -159,9 +160,10 @@ project(":core") {
         api "de.tomgrill.gdxdialogs:gdx-dialogs-core:1.2.5"
         api "de.golfgl.gdxgamesvcs:gdx-gamesvcs-core:1.0.2"
         api "com.kotcrab.vis:vis-ui:1.4.6"
-        //noinspection AnnotationProcessorOnCompilePath
         implementation "org.projectlombok:lombok:$lombok"
         annotationProcessor "org.projectlombok:lombok:$lombok"
+        implementation "com.crashinvaders.vfx:gdx-vfx-core:$gdxvfx"
+        implementation "com.crashinvaders.vfx:gdx-vfx-effects:$gdxvfx"
     }
 }
 

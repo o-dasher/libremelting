@@ -2,14 +2,17 @@ package com.dasher.meltinglight;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.crashinvaders.vfx.VfxManager;
 import com.dasher.meltinglight.Assets.GameAssetManager;
 import com.dasher.meltinglight.Audio.AudioCreator;
 import com.dasher.meltinglight.Graphics.ShapeRendering.FadeBlock;
@@ -35,17 +38,21 @@ public class MeltingLight extends Game {
 	private @Getter GameSettings gameSettings;
 	private @Getter AudioCreator audioCreator;
 	private @Getter Preferences preferences;
+	private @Getter VfxManager vfxManager;
+	private @Getter InputMultiplexer inputMultiplexer;
 	
 	@Override
 	public void create () {
 		int WORLD_WIDTH = 800;
 		int WORLD_HEIGHT = 600;
 
+		vfxManager = new VfxManager(Pixmap.Format.RGBA8888);
 		preferences = Gdx.app.getPreferences(getClass().getSimpleName().toLowerCase(Locale.ROOT));
 		sysPrinter = new SysPrinter();
 		gameSettings = new GameSettings(this);
 		gameSettings.load();
 		gameSettings.save();
+		inputMultiplexer = new InputMultiplexer();
 		audioCreator = new AudioCreator(gameSettings.getAudio());
 		fileExtensions = new FileExtensions();
 		viewport = new ExtendViewport(WORLD_WIDTH, WORLD_HEIGHT);
@@ -70,6 +77,8 @@ public class MeltingLight extends Game {
 			}
 		}
 
+		vfxManager.cleanUpBuffers();
+
 		super.render();
 
 		if (fadeBlock.isFading()) {
@@ -79,19 +88,21 @@ public class MeltingLight extends Game {
 
 	@Override
 	public void resize(int width, int height) {
-		super.resize(width, height);
-		fadeBlock.resize(width, height);
 		viewport.update(width, height);
+		fadeBlock.resize(width, height);
+		super.resize(width, height);
 	}
 
 	@Override
 	public void dispose () {
 		assets.dispose();
 		batch.dispose();
+		vfxManager.dispose();
 	}
 
 	@Override
 	public void setScreen(Screen screen) {
+		inputMultiplexer.clear();
 		super.setScreen(screen);
 		sysPrinter.printNew(Screen.class, screen.getClass().getSimpleName());
 	}
@@ -99,11 +110,6 @@ public class MeltingLight extends Game {
 	public void setScreen(final Screen screen, float fadeTime) {
 		fadeBlock.setPeriod(fadeTime);
 		fadeBlock.setFade(true);
-		fadeBlock.setFadeInTask(new Runnable() {
-			@Override
-			public void run() {
-				setScreen(screen);
-			}
-		});
+		fadeBlock.setFadeInTask(() -> setScreen(screen));
 	}
 }

@@ -4,8 +4,10 @@ import com.badlogic.gdx.audio.Sound;
 import com.dasher.meltinglight.Assets.AssetPack;
 import com.dasher.meltinglight.MeltingLight;
 
+import lombok.Getter;
+
 public class SoundPack extends AssetPack<Sound> {
-    public IntroSounds intro;
+    private final @Getter IntroSounds intro;
 
     public SoundPack(MeltingLight game) {
         super(game);

@@ -13,6 +13,6 @@ public class IntroLogo extends Image {
         game.getActorUtils().centerActor(this);
         setOrigin(Align.center);
         setScale(8);
-        addAction(Actions.scaleBy(2, 2,   1));
+        addAction(Actions.scaleBy(2, 2, 1));
     }
 }

@@ -11,12 +11,32 @@ public class ActorUtils {
         this.defaultViewport = defaultViewport;
     }
 
+    private Viewport switchViewport(Actor actor) {
+        return actor.getStage() == null? defaultViewport : actor.getStage().getViewport();
+    }
+
+    private float getCenter(float twh, float awh) {
+        return twh / 2 - awh / 2;
+    }
+
+    public float getCenterX(Actor actor, Viewport viewport) {
+        return getCenter(viewport.getWorldWidth(), actor.getWidth());
+    }
+
+    public float getCenterX(Actor actor) {
+        return getCenterX(actor, switchViewport(actor));
+    }
+
+    public float getCenterY(Actor actor, Viewport viewport) {
+        return getCenter(viewport.getWorldHeight(), actor.getHeight());
+    }
+
+    public float getCenterY(Actor actor) {
+        return getCenterY(actor, switchViewport(actor));
+    }
+
     public void centerActor(Actor actor) {
-        Stage stage = actor.getStage();
-        Viewport viewport = stage == null? defaultViewport : stage.getViewport();
-        actor.setPosition(
-                viewport.getWorldWidth() / 2 - actor.getWidth() / 2,
-                viewport.getWorldHeight() / 2 - actor.getHeight() / 2
-        );
+        Viewport viewport = switchViewport(actor);
+        actor.setPosition(getCenterX(actor, viewport), getCenterY(actor, viewport));
     }
 }

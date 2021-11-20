@@ -17,8 +17,8 @@ public class IntroScreen extends GameScreen {
     @Override
     public void show() {
         introStage = new IntroStage(game);
-        game.getAudioCreator().newSound(game.getAssets().getSounds().intro.whoosh.get()).play();
-        menuScreenTask = new ClockTask(1) {
+        game.getAudioCreator().newSound(game.getAssets().getSounds().getIntro().whoosh.get()).play();
+        menuScreenTask = new ClockTask(2) {
             @Override
             public void run() {
                 game.setScreen(new MainMenu(game), 1);
@@ -55,6 +55,6 @@ public class IntroScreen extends GameScreen {
 
     @Override
     public void dispose() {
-
+        introStage.dispose();
     }
 }
