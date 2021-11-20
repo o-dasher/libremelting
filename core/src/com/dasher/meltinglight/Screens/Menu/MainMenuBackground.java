@@ -9,11 +9,12 @@ import com.badlogic.gdx.utils.Scaling;
 import com.dasher.meltinglight.Graphics.Interfaces.ResizeListener;
 import com.dasher.meltinglight.MeltingLight;
 
+import org.jetbrains.annotations.NotNull;
+
 public class MainMenuBackground extends Image implements ResizeListener {
     protected MeltingLight game;
 
-
-    public MainMenuBackground(MeltingLight game, Texture texture) {
+    public MainMenuBackground(@NotNull MeltingLight game, Texture texture) {
         super(texture);
         this.game = game;
         setOrigin(Align.center);
@@ -29,7 +30,7 @@ public class MainMenuBackground extends Image implements ResizeListener {
     }
 
     private float getParallaxXY(float center, float ixy, float swh) {
-        float parallaxMultiplier = 25;
+        float parallaxMultiplier = 10;
         return center - ixy / swh * parallaxMultiplier;
     }
 

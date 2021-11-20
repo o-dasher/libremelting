@@ -14,5 +14,5 @@ public class IntroSounds extends ChildSoundPack {
         return "Intro";
     }
 
-    public GameAssetDescriptor<Sound> whoosh = createDescriptor("whoosh", extensions.mp3);
+    public final GameAssetDescriptor<Sound> whoosh = createDescriptor("whoosh", getFileExtensions().mp3);
 }

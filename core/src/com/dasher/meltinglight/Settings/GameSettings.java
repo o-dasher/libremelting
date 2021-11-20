@@ -1,21 +1,21 @@
 package com.dasher.meltinglight.Settings;
 
-import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.utils.Array;
 import com.dasher.meltinglight.IO.PersistentStored;
+import com.dasher.meltinglight.Interfaces.GameWrapper;
 import com.dasher.meltinglight.MeltingLight;
 
 import lombok.Data;
+import lombok.Getter;
 
 @Data
-public class GameSettings implements PersistentStored {
+public class GameSettings implements PersistentStored, GameWrapper {
+    private final @Getter MeltingLight game;
     private Array<GenericSetting> settings = new Array<>();
-    private Preferences preferences;
-
     private AudioSetting audio;
 
     public GameSettings(MeltingLight game) {
-        this.preferences = game.getPreferences();
+        this.game = game;
         settings.add(audio = new AudioSetting(game));
     }
 
@@ -24,7 +24,7 @@ public class GameSettings implements PersistentStored {
         for (GenericSetting setting: settings) {
             setting.save();
         }
-        preferences.flush();
+        getPreferences().flush();
     }
 
     @Override

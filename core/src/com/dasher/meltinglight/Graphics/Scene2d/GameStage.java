@@ -3,11 +3,14 @@ package com.dasher.meltinglight.Graphics.Scene2d;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
 import com.crashinvaders.vfx.effects.ChainVfxEffect;
+import com.dasher.meltinglight.Interfaces.GameWrapper;
 import com.dasher.meltinglight.MeltingLight;
 
-public abstract class GameStage extends Stage {
+import lombok.Getter;
+
+public abstract class GameStage extends Stage implements GameWrapper {
     private final Array<ChainVfxEffect> effects = new Array<>();
-    protected MeltingLight game;
+    private final @Getter MeltingLight game;
 
     public GameStage(MeltingLight game) {
         super(game.getViewport());
@@ -20,16 +23,16 @@ public abstract class GameStage extends Stage {
 
     @Override
     public void draw() {
-        game.getVfxManager().beginInputCapture();
+        getVfxManager().beginInputCapture();
         for (ChainVfxEffect effect: effects) {
-            game.getVfxManager().addEffect(effect);
+            getVfxManager().addEffect(effect);
         }
         super.draw();
-        game.getVfxManager().endInputCapture();
-        game.getVfxManager().applyEffects();
-        game.getVfxManager().renderToScreen();
+        getVfxManager().endInputCapture();
+        getVfxManager().applyEffects();
+        getVfxManager().renderToScreen();
         for (ChainVfxEffect effect: effects) {
-            game.getVfxManager().removeEffect(effect);
+            getVfxManager().removeEffect(effect);
         }
     }
 

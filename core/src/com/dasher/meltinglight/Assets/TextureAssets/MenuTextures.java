@@ -14,5 +14,5 @@ public class MenuTextures extends ChildTexturePack {
         return "Menu";
     }
 
-    public GameAssetDescriptor<Texture> menuBackground = createDescriptor("main-background-0", extensions.png, parent.getDefaultTextureParameter());
+    public final GameAssetDescriptor<Texture> menuBackground = createDescriptor("main-background-0", getFileExtensions().png, parent.getDefaultTextureParameter());
 }

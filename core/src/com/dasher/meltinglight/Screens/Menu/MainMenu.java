@@ -5,7 +5,8 @@ import com.dasher.meltinglight.MeltingLight;
 import com.dasher.meltinglight.Screens.GameScreen;
 
 public class MainMenu extends GameScreen {
-    private MainMenuStage mainMenuStage;
+    private MainMenuBackgroundStage mainMenuBackgroundStage;
+    private MainMenuFrontStage mainMenuFrontStage;
 
     public MainMenu(MeltingLight game) {
         super(game);
@@ -16,21 +17,24 @@ public class MainMenu extends GameScreen {
         GameMusic ambient = game.getAudioCreator().newMusic(game.getAssets().getMusics().getMenu().menuAmbient.get());
         ambient.setLooping(true);
         ambient.play();
-        mainMenuStage = new MainMenuStage(game);
-        game.getInputMultiplexer().addProcessor(mainMenuStage);
+        mainMenuBackgroundStage = new MainMenuBackgroundStage(game);
+        mainMenuFrontStage = new MainMenuFrontStage(game);
+        game.getInputMultiplexer().addProcessor(mainMenuFrontStage);
     }
 
     @Override
     public void render(float delta) {
         game.getViewport().apply(true);
-        mainMenuStage.act(delta);
-        mainMenuStage.draw();
+        mainMenuBackgroundStage.act(delta);
+        mainMenuBackgroundStage.draw();
+        mainMenuFrontStage.act(delta);
+        mainMenuFrontStage.draw();
         game.getViewport().apply(false);
     }
 
     @Override
     public void resize(int width, int height) {
-        mainMenuStage.resize(game.getViewport());
+        mainMenuBackgroundStage.resize(game.getViewport());
         show();
     }
 

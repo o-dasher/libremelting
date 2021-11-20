@@ -1,6 +1,5 @@
 package com.dasher.meltinglight.Settings;
 
-import com.badlogic.gdx.Preferences;
 import com.dasher.meltinglight.MeltingLight;
 import com.dasher.meltinglight.Settings.PreferenceType.FloatPreference;
 

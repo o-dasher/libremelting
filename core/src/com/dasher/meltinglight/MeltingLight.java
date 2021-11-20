@@ -15,10 +15,11 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.crashinvaders.vfx.VfxManager;
 import com.dasher.meltinglight.Assets.GameAssetManager;
 import com.dasher.meltinglight.Audio.AudioCreator;
+import com.dasher.meltinglight.Graphics.Scene2d.ActorUtils;
 import com.dasher.meltinglight.Graphics.ShapeRendering.FadeBlock;
 import com.dasher.meltinglight.IO.FileExtensions;
 import com.dasher.meltinglight.IO.SysPrinter;
-import com.dasher.meltinglight.Graphics.Scene2d.ActorUtils;
+import com.dasher.meltinglight.Interfaces.GameWrapper;
 import com.dasher.meltinglight.Screens.Intro.IntroScreen;
 import com.dasher.meltinglight.Settings.GameSettings;
 
@@ -26,13 +27,13 @@ import java.util.Locale;
 
 import lombok.Getter;
 
-public class MeltingLight extends Game {
+public class MeltingLight extends Game implements GameWrapper {
 	private @Getter SysPrinter sysPrinter;
 	private @Getter FileExtensions fileExtensions;
 	private @Getter GameAssetManager assets;
 	private @Getter Viewport viewport;
 	private @Getter ActorUtils actorUtils;
-	private @Getter SpriteBatch batch;
+	private @Getter SpriteBatch spriteBatch;
 	private @Getter FadeBlock fadeBlock;
 	private @Getter ShapeRenderer shapeRenderer;
 	private @Getter GameSettings gameSettings;
@@ -58,7 +59,7 @@ public class MeltingLight extends Game {
 		viewport = new ExtendViewport(WORLD_WIDTH, WORLD_HEIGHT);
 		shapeRenderer = new ShapeRenderer();
 		actorUtils = new ActorUtils(viewport);
-		batch = new SpriteBatch();
+		spriteBatch = new SpriteBatch();
 		fadeBlock = new FadeBlock(Color.BLACK, shapeRenderer);
 		assets = new GameAssetManager(this);
 		assets.initPacks();
@@ -96,7 +97,7 @@ public class MeltingLight extends Game {
 	@Override
 	public void dispose () {
 		assets.dispose();
-		batch.dispose();
+		spriteBatch.dispose();
 		vfxManager.dispose();
 	}
 
@@ -111,5 +112,10 @@ public class MeltingLight extends Game {
 		fadeBlock.setPeriod(fadeTime);
 		fadeBlock.setFade(true);
 		fadeBlock.setFadeInTask(() -> setScreen(screen));
+	}
+
+	@Override
+	public MeltingLight getGame() {
+		return this;
 	}
 }

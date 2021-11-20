@@ -14,5 +14,5 @@ public class IntroTextures extends ChildTexturePack {
         return "Intro";
     }
 
-    public GameAssetDescriptor<Texture> logo = createDescriptor("logo", extensions.png, parent.getDefaultTextureParameter());
+    public final GameAssetDescriptor<Texture> logo = createDescriptor("logo", getFileExtensions().png, parent.getDefaultTextureParameter());
 }

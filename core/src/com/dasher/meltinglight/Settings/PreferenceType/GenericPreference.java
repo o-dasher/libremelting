@@ -37,7 +37,7 @@ public abstract class GenericPreference<T> implements PersistentStored {
 
     public void loadValue(T value) {
         setValue(value);
-        parent.getPrinter().printLoaded(getClass(), getNormalizedPreference().getKey()+" "+value);
+        parent.getSysPrinter().printLoaded(getClass(), getNormalizedPreference().getKey()+" "+value);
     }
 
     public void setValue(T value) {

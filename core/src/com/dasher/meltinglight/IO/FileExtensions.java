@@ -6,4 +6,5 @@ public class FileExtensions {
     public final FileExtension jpg = new FileExtension("jpg");
     public final FileExtension mp3 = new FileExtension("mp3");
     public final FileExtension wav = new FileExtension("wav");
+    public final FileExtension fnt = new FileExtension("fnt");
 }

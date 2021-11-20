@@ -15,5 +15,5 @@ public class MenuMusics extends ChildMusicPack {
         return "Menu";
     }
 
-    public GameAssetDescriptor<Music> menuAmbient = createDescriptor("menu-ambient", extensions.wav);
+    public final GameAssetDescriptor<Music> menuAmbient = createDescriptor("menu-ambient", getFileExtensions().wav);
 }
