@@ -22,8 +22,8 @@ import com.dasher.meltinglight.Settings.GameSettings;
 import java.util.Locale;
 
 public class MeltingLight extends Game {
-	public int WORLD_WIDTH = 800;
-	public int WORLD_HEIGHT = 600;
+	public final int WORLD_WIDTH = 800;
+	public final int WORLD_HEIGHT = 600;
 	public SysPrinter sysPrinter;
 	public FileExtensions fileExtensions;
 	public GameAssetManager assets;
@@ -39,12 +39,12 @@ public class MeltingLight extends Game {
 	@Override
 	public void create () {
 		preferences = Gdx.app.getPreferences(getClass().getSimpleName().toLowerCase(Locale.ROOT));
-		gameSettings = new GameSettings(preferences);
+		sysPrinter = new SysPrinter();
+		gameSettings = new GameSettings(this);
 		gameSettings.load();
 		gameSettings.save();
 		audioCreator = new AudioCreator(gameSettings.getAudio());
 		fileExtensions = new FileExtensions();
-		sysPrinter = new SysPrinter();
 		viewport = new ExtendViewport(WORLD_WIDTH, WORLD_HEIGHT);
 		shapeRenderer = new ShapeRenderer();
 		actorUtils = new ActorUtils(viewport);

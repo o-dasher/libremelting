@@ -15,6 +15,6 @@ public class FloatPreference extends GenericPreference<Float> {
 
     @Override
     public void load() {
-        if (canLoad()) setValue(parent.getPreferences().getFloat(getNormalizedPreference().key));
+        if (canLoad()) loadValue(parent.getPreferences().getFloat(getNormalizedPreference().key));
     }
 }
