@@ -1,6 +1,6 @@
 package com.dasher.meltinglight.Screens.Intro;
 
-import com.badlogic.gdx.utils.Timer;
+
 import com.dasher.meltinglight.MeltingLight;
 import com.dasher.meltinglight.Screens.GameScreen;
 import com.dasher.meltinglight.Screens.Menu.MainMenu;
@@ -17,7 +17,7 @@ public class IntroScreen extends GameScreen {
     @Override
     public void show() {
         introStage = new IntroStage(game);
-        game.assets.sounds.intro.whoosh.get().play();
+        game.audioCreator.newSound(game.assets.sounds.intro.whoosh.get()).play();
         menuScreenTask = new ClockTask(1) {
             @Override
             public void run() {

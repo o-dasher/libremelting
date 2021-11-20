@@ -2,6 +2,7 @@ package com.dasher.meltinglight;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -10,11 +11,15 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.dasher.meltinglight.Assets.GameAssetManager;
+import com.dasher.meltinglight.Audio.AudioCreator;
 import com.dasher.meltinglight.Graphics.ShapeRendering.FadeBlock;
 import com.dasher.meltinglight.IO.FileExtensions;
 import com.dasher.meltinglight.IO.SysPrinter;
 import com.dasher.meltinglight.Graphics.Scene2d.ActorUtils;
 import com.dasher.meltinglight.Screens.Intro.IntroScreen;
+import com.dasher.meltinglight.Settings.GameSettings;
+
+import java.util.Locale;
 
 public class MeltingLight extends Game {
 	public int WORLD_WIDTH = 800;
@@ -27,9 +32,17 @@ public class MeltingLight extends Game {
 	public SpriteBatch batch;
 	public FadeBlock fadeBlock;
 	public ShapeRenderer shapeRenderer;
+	public GameSettings gameSettings;
+	public AudioCreator audioCreator;
+	public Preferences preferences;
 	
 	@Override
 	public void create () {
+		preferences = Gdx.app.getPreferences(getClass().getSimpleName().toLowerCase(Locale.ROOT));
+		gameSettings = new GameSettings(preferences);
+		gameSettings.load();
+		gameSettings.save();
+		audioCreator = new AudioCreator(gameSettings.getAudio());
 		fileExtensions = new FileExtensions();
 		sysPrinter = new SysPrinter();
 		viewport = new ExtendViewport(WORLD_WIDTH, WORLD_HEIGHT);
