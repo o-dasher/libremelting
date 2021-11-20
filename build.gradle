@@ -33,6 +33,7 @@ allprojects {
         gdxControllersVersion = '2.1.0'
         lombok = '1.18.20'
         gdxvfx = '0.5.0'
+        screenManager = '0.6.7'
     }
 
     repositories {
@@ -40,6 +41,7 @@ allprojects {
         mavenCentral()
         google()
         gradlePluginPortal()
+        maven { url "https://jitpack.io" }
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
         maven { url "https://oss.sonatype.org/content/repositories/releases/" }
     }
@@ -138,6 +140,9 @@ project(":html") {
         api "de.golfgl.gdxgamesvcs:gdx-gamesvcs-core:1.0.2:sources"
         api "de.golfgl.gdxgamesvcs:gdx-gamesvcs-core-gamejolt:1.0.2:sources"
         api "com.kotcrab.vis:vis-ui:1.3.0:sources"
+        api "com.github.crykn:libgdx-screenmanager:$screenManager:sources"
+        api "com.github.crykn:libgdx-screenmanager-gwt:$screenManager"
+        api "com.github.crykn:libgdx-screenmanager-gwt:$screenManager:sources"
         lom "org.projectlombok:lombok:$lombok"
         implementation configurations.lom.dependencies
         annotationProcessor "org.projectlombok:lombok:$lombok"
@@ -160,11 +165,12 @@ project(":core") {
         api "de.tomgrill.gdxdialogs:gdx-dialogs-core:1.2.5"
         api "de.golfgl.gdxgamesvcs:gdx-gamesvcs-core:1.0.2"
         api "com.kotcrab.vis:vis-ui:1.4.6"
+        api "com.github.crykn:libgdx-screenmanager:$screenManager"
         implementation "org.projectlombok:lombok:$lombok"
         annotationProcessor "org.projectlombok:lombok:$lombok"
         implementation "com.crashinvaders.vfx:gdx-vfx-core:$gdxvfx"
         implementation "com.crashinvaders.vfx:gdx-vfx-effects:$gdxvfx"
-    g
+        implementation "com.github.crykn:libgdx-screenmanager:$screenManager"
     }
 }
 

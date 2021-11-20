@@ -9,7 +9,8 @@
 	<inherits name='com.badlogic.gdx.controllers' />
 	<inherits name='com.badlogic.gdx.controllers.controllers-gwt' />
 	<inherits name='com.kotcrab.vis.vis-ui' />
-
+	<inherits name="libgdx_screenmanager" />
+	<inherits name="libgdx_screenmanager_gwt" />
 	<inherits name='MeltingLight' />
 	<entry-point class='com.dasher.meltinglight.client.HtmlLauncher' />
 	<set-configuration-property name='xsiframe.failIfScriptTag' value='FALSE'/>

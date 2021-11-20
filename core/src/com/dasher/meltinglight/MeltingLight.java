@@ -20,14 +20,16 @@ import com.dasher.meltinglight.Graphics.ShapeRendering.FadeBlock;
 import com.dasher.meltinglight.IO.FileExtensions;
 import com.dasher.meltinglight.IO.SysPrinter;
 import com.dasher.meltinglight.Interfaces.GameWrapper;
+import com.dasher.meltinglight.Screens.GameScreen;
 import com.dasher.meltinglight.Screens.Intro.IntroScreen;
 import com.dasher.meltinglight.Settings.GameSettings;
 
 import java.util.Locale;
 
+import de.eskalon.commons.core.ManagedGame;
 import lombok.Getter;
 
-public class MeltingLight extends Game implements GameWrapper {
+public class MeltingLight extends ManagedGame<IntroScreen, Transition> implements GameWrapper {
 	private @Getter SysPrinter sysPrinter;
 	private @Getter FileExtensions fileExtensions;
 	private @Getter GameAssetManager assets;
