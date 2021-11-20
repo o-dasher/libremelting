@@ -5,6 +5,7 @@ buildscript {
         mavenLocal()
         mavenCentral()
         gradlePluginPortal()
+        maven { url "https://jitpack.io" }
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
         google()
     }
@@ -13,7 +14,6 @@ buildscript {
         classpath 'org.gretty:gretty:3.0.2'
         classpath 'com.android.tools.build:gradle:7.0.3'
         classpath 'com.mobidevelop.robovm:robovm-gradle-plugin:2.3.12'
-
 
     }
 }
@@ -164,6 +164,7 @@ project(":core") {
         annotationProcessor "org.projectlombok:lombok:$lombok"
         implementation "com.crashinvaders.vfx:gdx-vfx-core:$gdxvfx"
         implementation "com.crashinvaders.vfx:gdx-vfx-effects:$gdxvfx"
+    g
     }
 }
 
