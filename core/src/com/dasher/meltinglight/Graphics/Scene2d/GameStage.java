@@ -7,7 +7,7 @@ public abstract class GameStage extends Stage {
     protected MeltingLight game;
 
     public GameStage(MeltingLight game) {
-        super(game.viewport);
+        super(game.getViewport());
         this.game = game;
     }
 }

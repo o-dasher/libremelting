@@ -10,11 +10,13 @@ import com.dasher.meltinglight.Assets.TextureAssets.TexturePack;
 import com.dasher.meltinglight.IO.SysPrinter;
 import com.dasher.meltinglight.MeltingLight;
 
+import lombok.Getter;
+
 public class GameAssetManager extends AssetManager {
     private final Array<AssetPack<?>> assetPacks = new Array<>();
     private final MeltingLight game;
-    public TexturePack textures;
-    public SoundPack sounds;
+    private @Getter TexturePack textures;
+    private @Getter SoundPack sounds;
 
     public GameAssetManager(MeltingLight game) {
         this.game = game;
@@ -30,12 +32,12 @@ public class GameAssetManager extends AssetManager {
     }
 
     private void loadAssetPack(AssetPack<?> assetPack) {
-        game.sysPrinter.printLoading(assetPack.getClass(), assetPack.dir());
-        for (AssetDescriptor<?> assetDescriptor: assetPack.assetDescriptors) {
+        game.getSysPrinter().printLoading(assetPack.getClass(), assetPack.dir());
+        for (AssetDescriptor<?> assetDescriptor: assetPack.getAssetDescriptors()) {
             load(assetDescriptor);
-            game.sysPrinter.printLoaded(assetDescriptor.type, assetDescriptor.fileName);
+            game.getSysPrinter().printLoaded(assetDescriptor.type, assetDescriptor.fileName);
         }
-        for (ChildPack<?, ?> childPack: assetPack.childPacks) {
+        for (ChildPack<?, ?> childPack: assetPack.getChildPacks()) {
             loadAssetPack(childPack);
         }
     }

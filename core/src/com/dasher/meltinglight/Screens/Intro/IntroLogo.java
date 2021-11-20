@@ -10,7 +10,7 @@ import com.dasher.meltinglight.MeltingLight;
 public class IntroLogo extends Image {
     public IntroLogo(MeltingLight game, Texture texture) {
         super(texture);
-        game.actorUtils.centerActor(this);
+        game.getActorUtils().centerActor(this);
         setOrigin(Align.center);
         setScale(8);
         addAction(Actions.scaleBy(2, 2,   1));

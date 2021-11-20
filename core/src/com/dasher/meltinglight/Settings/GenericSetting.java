@@ -18,8 +18,8 @@ public abstract class GenericSetting implements PersistentStored {
     private final @Getter SysPrinter printer;
 
     public GenericSetting(MeltingLight game) {
-        this.printer = game.sysPrinter;
-        this.preferences = game.preferences;
+        this.printer = game.getSysPrinter();
+        this.preferences = game.getPreferences();
     }
 
     public abstract String name();

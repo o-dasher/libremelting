@@ -21,23 +21,26 @@ import com.dasher.meltinglight.Settings.GameSettings;
 
 import java.util.Locale;
 
+import lombok.Getter;
+
 public class MeltingLight extends Game {
-	public final int WORLD_WIDTH = 800;
-	public final int WORLD_HEIGHT = 600;
-	public SysPrinter sysPrinter;
-	public FileExtensions fileExtensions;
-	public GameAssetManager assets;
-	public Viewport viewport;
-	public ActorUtils actorUtils;
-	public SpriteBatch batch;
-	public FadeBlock fadeBlock;
-	public ShapeRenderer shapeRenderer;
-	public GameSettings gameSettings;
-	public AudioCreator audioCreator;
-	public Preferences preferences;
+	private @Getter SysPrinter sysPrinter;
+	private @Getter FileExtensions fileExtensions;
+	private @Getter GameAssetManager assets;
+	private @Getter Viewport viewport;
+	private @Getter ActorUtils actorUtils;
+	private @Getter SpriteBatch batch;
+	private @Getter FadeBlock fadeBlock;
+	private @Getter ShapeRenderer shapeRenderer;
+	private @Getter GameSettings gameSettings;
+	private @Getter AudioCreator audioCreator;
+	private @Getter Preferences preferences;
 	
 	@Override
 	public void create () {
+		int WORLD_WIDTH = 800;
+		int WORLD_HEIGHT = 600;
+
 		preferences = Gdx.app.getPreferences(getClass().getSimpleName().toLowerCase(Locale.ROOT));
 		sysPrinter = new SysPrinter();
 		gameSettings = new GameSettings(this);

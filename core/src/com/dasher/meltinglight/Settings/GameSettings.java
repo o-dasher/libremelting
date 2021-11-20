@@ -15,7 +15,7 @@ public class GameSettings implements PersistentStored {
     private AudioSetting audio;
 
     public GameSettings(MeltingLight game) {
-        this.preferences = game.preferences;
+        this.preferences = game.getPreferences();
         settings.add(audio = new AudioSetting(game));
     }
 
