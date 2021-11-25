@@ -34,7 +34,6 @@ allprojects {
         lombok = '1.18.20'
         gdxvfx = '0.5.0'
         screenManager = '0.6.7'
-        gdxGraphVersion = '0.5.1'
     }
 
     repositories {
@@ -148,7 +147,6 @@ project(":html") {
         implementation configurations.lom.dependencies
         annotationProcessor "org.projectlombok:lombok:$lombok"
         implementation "com.crashinvaders.vfx:gdx-vfx-gwt:$gdxvfx"
-        implementation "com.gempukku.libgdx.graph:libgdx-graph:$gdxGraphVersion:sources"
     }
 }
 
@@ -174,7 +172,6 @@ project(":core") {
         implementation "com.crashinvaders.vfx:gdx-vfx-effects:$gdxvfx"
         implementation "com.github.crykn:libgdx-screenmanager:$screenManager"
         implementation "com.badlogicgames.box2dlights:box2dlights:1.5"
-        api "com.gempukku.libgdx.graph:libgdx-graph:$gdxGraphVersion"
     }
 }
 

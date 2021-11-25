@@ -9,7 +9,6 @@
 	<inherits name='com.badlogic.gdx.controllers' />
 	<inherits name='com.badlogic.gdx.controllers.controllers-gwt' />
 	<inherits name='com.kotcrab.vis.vis-ui' />
-	<inherits name='com.gempukku.libgdx.graph'/>
 
     <inherits name='com.dasher.meltinglight.GdxDefinition' />
     
