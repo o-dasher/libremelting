@@ -3,12 +3,12 @@ package com.dasher.meltinglight.Assets;
 import com.badlogic.gdx.assets.AssetLoaderParameters;
 import com.badlogic.gdx.utils.Array;
 import com.dasher.meltinglight.IO.FileExtension;
-import com.dasher.meltinglight.Interfaces.GameWrapper;
 import com.dasher.meltinglight.MeltingLight;
+import com.dasher.meltinglight.GameContainer;
 
 import lombok.Getter;
 
-public abstract class AssetPack<T> implements GameWrapper {
+public abstract class AssetPack<T> implements GameContainer {
     private final @Getter MeltingLight game;
 
     public AssetPack(MeltingLight game) {

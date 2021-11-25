@@ -2,14 +2,14 @@ package com.dasher.meltinglight.Settings;
 
 import com.badlogic.gdx.utils.Array;
 import com.dasher.meltinglight.IO.PersistentStored;
-import com.dasher.meltinglight.Interfaces.GameWrapper;
 import com.dasher.meltinglight.MeltingLight;
+import com.dasher.meltinglight.GameContainer;
 
 import lombok.Data;
 import lombok.Getter;
 
 @Data
-public class GameSettings implements PersistentStored, GameWrapper {
+public class GameSettings implements PersistentStored, GameContainer {
     private final @Getter MeltingLight game;
     private Array<GenericSetting> settings = new Array<>();
     private AudioSetting audio;

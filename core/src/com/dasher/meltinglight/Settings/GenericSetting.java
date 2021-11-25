@@ -3,15 +3,15 @@ package com.dasher.meltinglight.Settings;
 
 import com.badlogic.gdx.utils.Array;
 import com.dasher.meltinglight.IO.PersistentStored;
-import com.dasher.meltinglight.Interfaces.GameWrapper;
 import com.dasher.meltinglight.MeltingLight;
 import com.dasher.meltinglight.Settings.PreferenceType.GenericPreference;
+import com.dasher.meltinglight.GameContainer;
 
 import java.util.Locale;
 
 import lombok.Getter;
 
-public abstract class GenericSetting implements PersistentStored, GameWrapper {
+public abstract class GenericSetting implements PersistentStored, GameContainer {
     protected final @Getter Array<GenericPreference<?>> genericPreferences = new Array<>();
     private final @Getter MeltingLight game;
 

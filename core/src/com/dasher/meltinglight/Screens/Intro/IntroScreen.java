@@ -1,29 +1,49 @@
 package com.dasher.meltinglight.Screens.Intro;
 
 
+import com.dasher.meltinglight.Audio.GameSound;
 import com.dasher.meltinglight.MeltingLight;
 import com.dasher.meltinglight.Screens.GameScreen;
 import com.dasher.meltinglight.Screens.Menu.MainMenu;
 import com.dasher.meltinglight.Tasks.ClockTask;
 
+import de.eskalon.commons.screen.transition.impl.BlendingTransition;
+import de.eskalon.commons.screen.transition.impl.HorizontalSlicingTransition;
+import de.eskalon.commons.screen.transition.impl.PushTransition;
+import de.eskalon.commons.screen.transition.impl.SlidingDirection;
+import de.eskalon.commons.screen.transition.impl.VerticalSlicingTransition;
+
 public class IntroScreen extends GameScreen {
     private ClockTask menuScreenTask;
     private IntroStage introStage;
+    private GameSound whooshSound;
 
     public IntroScreen(MeltingLight game) {
         super(game);
     }
 
     @Override
-    public void show() {
+    protected void create() {
         introStage = new IntroStage(game);
-        getAudioCreator().newSound(getAssets().getSounds().getIntro().whoosh.get()).play();
+        whooshSound = getAudioCreator().newSound(getAssets().getSounds().getIntro().whoosh.get());
+        getScreenManager().addScreen(getScreenNames().menu, new MainMenu(game));
         menuScreenTask = new ClockTask(2) {
             @Override
             public void run() {
-                game.setScreen(new MainMenu(game), 1);
+                getScreenManager().addScreenTransition(
+                        getTransitionNames().blending,
+                        new BlendingTransition(getSpriteBatch(), 1)
+                );
+                getScreenManager().pushScreen(getScreenNames().menu, getTransitionNames().blending);
             }
         };
+    }
+
+    @Override
+    public void show() {
+        super.show();
+        whooshSound.play();
+        menuScreenTask.reset();
     }
 
     @Override
@@ -56,5 +76,10 @@ public class IntroScreen extends GameScreen {
     @Override
     public void dispose() {
         introStage.dispose();
+    }
+
+    @Override
+    public String getName() {
+        return getScreenNames().intro;
     }
 }

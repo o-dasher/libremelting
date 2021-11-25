@@ -27,6 +27,11 @@ public abstract class ClockTask implements UpdateAbleTask{
         }
     }
 
+    public void reset() {
+        timeSeconds = 0;
+        isCancelled = false;
+    }
+
     public abstract void run();
 
     public void setRepeating(boolean repeating) {

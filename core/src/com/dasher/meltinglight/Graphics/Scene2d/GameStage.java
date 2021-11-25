@@ -3,13 +3,13 @@ package com.dasher.meltinglight.Graphics.Scene2d;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
 import com.crashinvaders.vfx.effects.ChainVfxEffect;
-import com.dasher.meltinglight.Interfaces.GameWrapper;
 import com.dasher.meltinglight.MeltingLight;
+import com.dasher.meltinglight.GameContainer;
 
 import lombok.Getter;
 
-public abstract class GameStage extends Stage implements GameWrapper {
-    private final Array<ChainVfxEffect> effects = new Array<>();
+public abstract class GameStage extends Stage implements GameContainer {
+    private final @Getter Array<ChainVfxEffect> effects = new Array<>();
     private final @Getter MeltingLight game;
 
     public GameStage(MeltingLight game) {
@@ -39,8 +39,13 @@ public abstract class GameStage extends Stage implements GameWrapper {
     @Override
     public void dispose() {
         super.dispose();
+        disposeEffects();
+    }
+
+    public void disposeEffects() {
         for (ChainVfxEffect effect: effects) {
             effect.dispose();
         }
+        effects.clear();
     }
 }

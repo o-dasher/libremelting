@@ -7,12 +7,12 @@ import com.dasher.meltinglight.Assets.FontAssets.FontPack;
 import com.dasher.meltinglight.Assets.MusicAssets.MusicPack;
 import com.dasher.meltinglight.Assets.SoundAssets.SoundPack;
 import com.dasher.meltinglight.Assets.TextureAssets.TexturePack;
-import com.dasher.meltinglight.Interfaces.GameWrapper;
 import com.dasher.meltinglight.MeltingLight;
+import com.dasher.meltinglight.GameContainer;
 
 import lombok.Getter;
 
-public class GameAssetManager extends AssetManager implements GameWrapper {
+public class GameAssetManager extends AssetManager implements GameContainer {
     private final Array<AssetPack<?>> assetPacks = new Array<>();
     private final @Getter MeltingLight game;
     private @Getter TexturePack textures;
